@@ -9,11 +9,12 @@ public class Main {
   private List<File> files = new ArrayList<>();
   
   public static void main(String[] args) {
-    //Main m = new Main(new File("."));
-    //m.print();
-
     Tree t = new Tree(new File("."));
+    t.build();
     t.print();
+
+    TaskChain chain = new TaskChain(t);
+    chain.buildAndRun();
   }
   
   public Main(File root) {

@@ -4,9 +4,14 @@ import java.io.File;
 import java.util.TreeSet;
 
 public class Tree {
+  private File root;
   private TreeSet<Knot> knots = new TreeSet<>();
 
   public Tree(File root) {
+    this.root = root;
+  }
+
+  public void build() {
     readKnots(root, null);
   }
 
@@ -18,6 +23,10 @@ public class Tree {
         readKnots(file, knot);
       }
     }
+  }
+
+  public TreeSet<Knot> getKnots() {
+    return knots;
   }
 
   public void print() {

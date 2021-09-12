@@ -41,7 +41,7 @@ public class Knot implements Comparable {
     }
 
     if (goOn) {
-      cmp = data.isFile() ? 1 : -1;
+      cmp = data.isFile() ? 1 : (-1);
     }
 
     return cmp;
