@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskChain {
-  private Tree tree;
+  private Tree srcTree;
+  private Tree tgtTree;
   private List tasks = new ArrayList<Task>();
 
-  public TaskChain(Tree tree) {
-    this.tree = tree;
+  public TaskChain(Tree srcTree, Tree tgtTree) {
+    this.srcTree = srcTree;
+    this.tgtTree = tgtTree;
   }
 
   public void buildAndRun() {
-    new WalkForward().walk(tree.getKnots(), tasks);
-    new WalkBack().walk(tree.getKnots(), tasks);
+    new WalkForward().walk(srcTree.getKnots(), tgtTree.getKnots(), tasks);
+    new WalkBack().walk(srcTree.getKnots(), tgtTree.getKnots(), tasks);
     run();
   }
 
