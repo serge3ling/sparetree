@@ -3,6 +3,8 @@ package com.herokuapp.s3_sparetree;
 import java.io.File;
 
 public class Knot implements Comparable {
+  static String SEPARATOR = File.separator;
+
   private File data;
   private String path = "";
   //private Knot[] knots;
@@ -10,7 +12,7 @@ public class Knot implements Comparable {
   public Knot(File data, Knot parentKnot) {
     this.data = data;
     if (parentKnot != null) {
-      path = parentKnot.relativePath() + File.separator + parentKnot.getData().getName();
+      path = parentKnot.relativePath() + SEPARATOR + parentKnot.getName();
     }
   }
 
@@ -32,8 +34,8 @@ public class Knot implements Comparable {
     boolean goOn = (cmp == 0) && !data.equals(other.getData());
 
     if (goOn) {
-      if (data.isDirectory() && other.getData().isDirectory()
-          || data.isFile() && other.getData().isFile()
+      if (this.isDirectory() && other.isDirectory()
+          || this.isLeaf() && other.isLeaf()
           ) {
         cmp = data.compareTo(other.getData());
         goOn = false;
@@ -41,7 +43,7 @@ public class Knot implements Comparable {
     }
 
     if (goOn) {
-      cmp = data.isFile() ? 1 : (-1);
+      cmp = this.isLeaf() ? 1 : (-1);
     }
 
     return cmp;
@@ -49,7 +51,7 @@ public class Knot implements Comparable {
 
   private int compareParentTo(Knot other) {
     String thisParent = data.getParent();
-    String otherParent = other.getData().getParent();
+    String otherParent = other.getParent();
     int cmp = 0;
     boolean goOn = ((thisParent != null) || (otherParent != null));
 
@@ -78,5 +80,21 @@ public class Knot implements Comparable {
 
   public String relativePath() {
     return path;
+  }
+
+  public boolean isLeaf() {
+    return data.isFile();
+  }
+
+  public boolean isDirectory() {
+    return data.isDirectory();
+  }
+
+  public String getName() {
+    return data.getName();
+  }
+
+  public String getParent() {
+    return data.getParent();
   }
 }
