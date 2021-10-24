@@ -3,7 +3,7 @@ package com.herokuapp.s3_sparetree;
 import java.io.File;
 
 public class Knot implements Comparable {
-  static String SEPARATOR = File.separator;
+  static final String SEPARATOR = File.separator;
 
   private File data;
   private String path = "";
