@@ -73,6 +73,11 @@ public class Knot implements Comparable {
     return data;
   }
 
+  public boolean dataEqual(Knot other) {
+    return (this.data.lastModified() == other.data.lastModified())
+        && (this.data.length() == other.data.length());
+  }
+
   @Override
   public String toString() {
     return path + ", " + data.toString();

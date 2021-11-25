@@ -4,15 +4,15 @@ import java.io.File;
 import java.util.TreeSet;
 
 public class Tree {
-  private File root;
+  private File rootData;
   private TreeSet<Knot> knots = new TreeSet<>();
 
-  public Tree(File root) {
-    this.root = root;
+  public Tree(File rootData) {
+    this.rootData = rootData;
   }
 
   public void build() {
-    readKnots(root, null);
+    readKnots(rootData, null);
   }
 
   private void readKnots(final File dir, Knot parentKnot) {
@@ -27,6 +27,10 @@ public class Tree {
 
   public TreeSet<Knot> getKnots() {
     return knots;
+  }
+
+  public File getRootData() {
+    return rootData;
   }
 
   public void print() {

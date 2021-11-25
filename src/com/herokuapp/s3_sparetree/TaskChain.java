@@ -14,12 +14,12 @@ public class TaskChain {
   }
 
   public void buildAndRun() {
-    new WalkForward().walk(srcTree.getKnots(), tgtTree.getKnots(), tasks);
-    new WalkBack().walk(srcTree.getKnots(), tgtTree.getKnots(), tasks);
+    new WalkForward().walk(srcTree, tgtTree, tasks);
+    new WalkBack().walk(srcTree, tgtTree, tasks);
     run();
   }
 
   private void run() {
-    ;
+    System.out.println("TaskChain has " + tasks.size() + " items.");
   }
 }

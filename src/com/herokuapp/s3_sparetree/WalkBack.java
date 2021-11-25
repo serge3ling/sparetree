@@ -4,6 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 public class WalkBack {
-  public void walk(Set<Knot> srcKnots, Set<Knot> tgtKnots, List<Task> tasks) {
+  public void walk(Tree srcTree, Tree tgtTree, List<Task> tasks) {
   }
 }
