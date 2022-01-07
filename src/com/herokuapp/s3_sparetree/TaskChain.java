@@ -21,5 +21,8 @@ public class TaskChain {
 
   private void run() {
     System.out.println("TaskChain has " + tasks.size() + " items.");
+    for (Object obj : tasks) {
+      ((Task) obj).run();
+    }
   }
 }
