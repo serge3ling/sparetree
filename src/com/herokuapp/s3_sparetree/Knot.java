@@ -31,13 +31,13 @@ public class Knot implements Comparable {
   public int compareTo(Object otherObject) {
     Knot other = (Knot) otherObject;
     int cmp = compareParentTo(other);
-    boolean goOn = (cmp == 0) && !data.equals(other.getData());
+    boolean goOn = (cmp == 0) && !this.getName().equals(other.getName());//!data.equals(other.getData());
 
     if (goOn) {
       if (this.isDirectory() && other.isDirectory()
           || this.isLeaf() && other.isLeaf()
           ) {
-        cmp = data.compareTo(other.getData());
+        cmp = this.getName().compareTo(other.getName());//data.compareTo(other.getData());
         goOn = false;
       }
     }
@@ -50,8 +50,8 @@ public class Knot implements Comparable {
   }
 
   private int compareParentTo(Knot other) {
-    String thisParent = data.getParent();
-    String otherParent = other.getParent();
+    String thisParent = this.path;//data.getParent();
+    String otherParent = other.relativePath();//other.getParent();
     int cmp = 0;
     boolean goOn = ((thisParent != null) || (otherParent != null));
 
@@ -63,7 +63,7 @@ public class Knot implements Comparable {
     }
 
     if (goOn) {
-      cmp = (thisParent == null) ? -1 : 1;
+      cmp = (thisParent == null) ? (-1) : 1;
     }
 
     return cmp;

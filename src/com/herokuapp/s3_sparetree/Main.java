@@ -15,7 +15,7 @@ public class Main {
 
     Tree tgtTree = new Tree(new File("t"));
     tgtTree.build();
-    tgtTree.print();
+    //tgtTree.print();
 
     TaskChain chain = new TaskChain(srcTree, tgtTree);
     chain.buildAndRun();

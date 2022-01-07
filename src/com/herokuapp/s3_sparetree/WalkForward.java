@@ -14,7 +14,7 @@ public class WalkForward {
   private Knot tgtKnot;
   private boolean hasTgtKnot;
 
-  public void walk(Tree srcTree, Tree tgtTree, List<Task> tasks) {
+  public List<Task> walk(Tree srcTree, Tree tgtTree, List<Task> tasks) {
     tgtRootData = tgtTree.getRootData();
     srcIterator = srcTree.getKnots().iterator();
     tgtIterator = tgtTree.getKnots().iterator();
@@ -30,6 +30,8 @@ public class WalkForward {
         enqueueWrite();
       }
     }
+
+    return this.tasks;
   }
 
   private void nextTgt() {
@@ -56,9 +58,8 @@ public class WalkForward {
   }
 
   private void enqueueWrite() {
-    // I think, needed arguments are srcKnot and tgtRootData.
+    // I think, arguments should be srcKnot and tgtRootData.
     tasks.add(new FileWrite(srcKnot, tgtRootData));
-    //System.out.println("src " + srcKnot);
   }
 
   private boolean filesSeemDifferent() {

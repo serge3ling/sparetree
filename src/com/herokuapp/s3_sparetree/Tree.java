@@ -34,6 +34,7 @@ public class Tree {
   }
 
   public void print() {
+    System.out.println("rootData: " + rootData + ". Items: " + knots.size() + ".");
     for (final Knot knot: knots) {
       System.out.println(knot);
     }
