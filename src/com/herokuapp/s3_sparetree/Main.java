@@ -11,7 +11,7 @@ public class Main {
   public static void main(String[] args) {
     Tree srcTree = new Tree(new File("src"));
     srcTree.build();
-    srcTree.print();
+    //srcTree.print();
 
     Tree tgtTree = new Tree(new File("t"));
     tgtTree.build();

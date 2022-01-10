@@ -43,14 +43,14 @@ public class FileWrite implements Task {
       while ((length = srcStream.read(buffer)) > 0) {
         tgtStream.write(buffer, 0, length);
       }
-      System.out.println("[ OK ] Copy " + src + " to " + tgt);
+      System.out.println("[ OK ] cp " + src + " -> " + tgt);
     } catch (IOException e) {
-      System.err.println("[FAIL] Copy " + src + " to " + tgt);
+      System.err.println("[FAIL] cp " + src + " -> " + tgt);
     } finally {
       try {
+        tgt.setLastModified(src.lastModified());
         srcStream.close();
         tgtStream.close();
-        tgt.setLastModified(src.lastModified());
       } catch (Exception e) {
       }
     }

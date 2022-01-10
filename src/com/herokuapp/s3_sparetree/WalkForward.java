@@ -51,8 +51,9 @@ public class WalkForward {
       }
       nextTgt();
     } else {
-      while (hasTgtKnot) {
+      while (hasTgtKnot && (compared > 0)) {
         nextTgt();
+        compared = srcKnot.compareTo(tgtKnot);
       }
     }
   }
