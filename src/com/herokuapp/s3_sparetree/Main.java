@@ -1,5 +1,7 @@
 package com.herokuapp.s3_sparetree;
 
+import com.herokuapp.s3_sparetree.ymlparse.Parse;
+import com.herokuapp.s3_sparetree.ymlparse.YmlParseException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +10,34 @@ import java.util.ListIterator;
 public class Main {
   private List<File> files = new ArrayList<>();
   
-  public static void main(String[] args) {
-    Tree srcTree = new Tree(new File("src"));
+  public static void main(String[] args) throws YmlParseException {
+    Parse yml = new Parse("job.yml");
+    yml.readFile();
+    String[] treeCoupleStrings = yml.getArr("tree-couples");
+
+
+    for (String coupleString : treeCoupleStrings) {
+      TreeStringParse treeStringParse = new TreeStringParse(coupleString);
+      String srcString = treeStringParse.src();
+      String tgtString = treeStringParse.tgt();
+
+      Tree srcTree = new Tree(new File(srcString));
+      Tree tgtTree = new Tree(new File(tgtString));
+      srcTree.build();
+      tgtTree.build();
+
+      TaskChain chain = new TaskChain(srcTree, tgtTree);
+      chain.buildAndRun();
+    }
+
+    /*Tree srcTree = new Tree(new File("src"));
     srcTree.build();
-    //srcTree.print();
 
     Tree tgtTree = new Tree(new File("t"));
     tgtTree.build();
-    //tgtTree.print();
 
     TaskChain chain = new TaskChain(srcTree, tgtTree);
-    chain.buildAndRun();
+    chain.buildAndRun();*/
   }
   
   public Main(File root) {

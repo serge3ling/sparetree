@@ -1,0 +1,3 @@
+tree-couples:
+  - src-tree-1 -> tgt-tree-1
+  - src-tree-2 -> tgt-tree-2

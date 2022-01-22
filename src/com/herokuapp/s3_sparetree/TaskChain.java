@@ -1,5 +1,6 @@
 package com.herokuapp.s3_sparetree;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
